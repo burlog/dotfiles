@@ -195,7 +195,9 @@ call vundle#end()
 filetype plugin indent on      " Turn on filetype plugins
 syntax on                      " Turn on syntax highlighting
 colorscheme burlog             " The best colorscheme ever
-set termguicolors              " Display gui colors on terminal
+if has('termguicolors')
+    set termguicolors          " Display gui colors on terminal
+endif
 
 autocmd FileType c,cpp,python execute "setlocal colorcolumn=" . join(range(81, 256), ",")
 autocmd BufLeave,WinLeave        * setlocal nocursorline     " Hide current line
