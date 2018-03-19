@@ -1,0 +1,32 @@
+[core]
+editor = vim
+excludesfile = /home/burlog/.gitignore
+pager = 
+
+[user]
+name = Michal Bukovsky
+email = michal.bukovsky@firma.seznam.cz
+
+[color]
+diff = auto
+status = auto
+branch = auto
+show-branch = auto
+grep = auto
+
+[alias]
+
+[push]
+default = current
+
+[status]
+color = auto
+
+[diff]
+#external = /usr/bin/colordiff
+
+[http]
+sslVerify = false
+
+[help]
+autoCorrect = -1
