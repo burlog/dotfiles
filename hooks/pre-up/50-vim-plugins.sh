@@ -1,4 +1,4 @@
-#!bin/sh
+#!/bin/sh
 
 if [ ! -d "~/.vim/bundle" ]; then
     mkdir -p ~/.vim/bundle

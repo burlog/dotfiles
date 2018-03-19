@@ -1,4 +1,4 @@
-#!bin/sh
+#!/bin/sh
 
 if [ ! -d "~/.oh-my-zsh/custom/plugins/" ]; then
     mkdir -p ~/.oh-my-zsh/custom/plugins/
