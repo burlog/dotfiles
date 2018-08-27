@@ -46,14 +46,28 @@ set splitright                 " Open windows on right side
 set winfixheight               " Don't automatically change windows height
 set path+=/usr/local/include   " Adds /usr/local/include to include search path
 set include=^\\s*#\\s*include\\s*\\(\"\\\|<mime\\\|<szn\\\|<html\\\|<frpc\\\|<urilib\\\|<sump\\\|<resolver\\\|<probe\\\|<mcache\\\|<css\\\|<content-cleaner\\\|<aeros\\)
+set foldmethod=marker          " Use vim triple { markers to denote folded blocks
+set foldcolumn=1               " Adds extra column left edge of window to indicate folds
+set fillchars="vert:\|,fold: " " Sets what characters are used to draw vertical lines and folds
+
+
+"= Folding =====================================================================
+
+set foldtext=MyFoldText()
+function MyFoldText()
+  let line = getline(v:foldstart)
+  let result = substitute(line, "\\(//\\|/\\*\\)\\s*{\\{3\\}", "", "g")
+  let lines = v:foldend - v:foldstart
+  return printf("%4d: %s", lines, result)
+endfunction
 
 "= Gui settings ================================================================
 
 " cursor change: SI=insert-mode, SR=replace-mode, EI=normal/command-mode
 let &t_SI = "\<Esc>]50;CursorShape=1;CustomCursorColor=\#ff5f00\x7"
 let &t_SR = "\<Esc>]50;CursorShape=1;CustomCursorColor=\#afffff\x7"
-let &t_EI = "\<Esc>]50;CursorShape=3;CustomCursorColor=\#ffd700\x7"
-au VimEnter * silent execute '!echo -ne "\e]50;CursorShape=3;CustomCursorColor=\#ffd700\x7"' | redraw!
+let &t_EI = "\<Esc>]50;CursorShape=3;CustomCursorColor=\#00ffd7\x7"
+au VimEnter * silent execute '!echo -ne "\e]50;CursorShape=3;CustomCursorColor=\#00ffd7\x7"' | redraw!
 au VimLeave * silent execute '!echo -ne "\e]50;CursorShape=1;CustomCursorColor=0\x7"' | redraw!
 
 "= Key mapping =================================================================
@@ -175,6 +189,7 @@ Plugin 'FooSoft/vim-argwrap'
 Plugin 'junegunn/vim-easy-align'
 
 Plugin 'tomtom/tcomment_vim'
+source $HOME/.vim/tcomment.vim
 
 Plugin 'airblade/vim-gitgutter'
 source $HOME/.vim/gitgutter.vim
@@ -183,8 +198,8 @@ Plugin 'yssl/QFEnter'
 
 Plugin 'tpope/vim-surround'
 
-Plugin 'chrisbra/csv.vim'
-source $HOME/.vim/csv.vim
+" Plugin 'chrisbra/csv.vim'
+" source $HOME/.vim/csv.vim
 
 Plugin 'PeterRincker/vim-argumentative'
 source $HOME/.vim/argumentative.vim

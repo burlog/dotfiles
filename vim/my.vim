@@ -58,15 +58,16 @@ function! ToggleSignColumn()
     endfor
 endfunction
 
-autocmd FileType qf call s:FixQFWin()
-function s:FixQFWin()
+function! s:FixQFWin()
     silent setlocal nowinfixheight
-    silent resize 35
+    silent 5wincmd _
     silent setlocal winfixheight
 endfunction
+autocmd User YcmLocationOpened call s:FixQFWin()
+autocmd User YcmQuickFixOpened call s:FixQFWin()
 
 autocmd BufAdd * call s:OpenPreviewOnRight()
-function s:OpenPreviewOnRight()
+function! s:OpenPreviewOnRight()
     if &previewwindow && !get(w:, "fix_preview_pos_done", 0)
         silent wincmd L
         silent vertical resize 60
@@ -87,10 +88,12 @@ function! OpenPreview()
     silent setlocal noswapfile
     silent setlocal winfixwidth
     silent wincmd p
+    " copen 5
+    " silent wincmd p
 endfunction
 
 autocmd BufEnter * call SetSyntaxForPreview(bufnr("%"))
-function SetSyntaxForPreview(current_bufno)
+function! SetSyntaxForPreview(current_bufno)
     for winno in range(0, winnr('$'))
         if getwinvar(winno, "&previewwindow")
             let bufno = winbufnr(winno)
@@ -101,6 +104,13 @@ function SetSyntaxForPreview(current_bufno)
             endif
         endif
     endfor
+endfunction
+
+function! ErrorColumn()
+    redir => diag
+    silent execute "YcmShowDetailedDiagnostic"
+    redir END
+    return str2nr(split(split(split(diag, "\n")[0])[0], ":")[-1])
 endfunction
 
 function! GotoNextSign(...)
@@ -120,12 +130,14 @@ function! GotoNextSign(...)
             endif
             if line_number > cur
                 call setpos(".", [0, line_number, 1, 0])
+                call setpos(".", [0, line_number, ErrorColumn(), 0])
                 return
             endif
         endif
     endfor
     if first_one < line("$")
         call setpos(".", [0, first_one, 1, 0])
+        call setpos(".", [0, first_one, ErrorColumn(), 0])
         return
     endif
     echom "No signs found: " . string(a:000)

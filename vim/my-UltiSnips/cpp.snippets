@@ -284,11 +284,11 @@ std::cin >> ${1};
 endsnippet
 
 snippet DD
-std::cout << __PRETTY_FUNCTION__ << ":" << __LINE__ << std::endl;
+std::cout << __PRETTY_FUNCTION__ << ":" << __FILE__ << ":" << __LINE__ << std::endl;
 endsnippet
 
 snippet dd
-DBG(DBG1, "AAAAAAAAAA %s:%d", __PRETTY_FUNCTION__, __LINE__);
+DBG(DBG1, "AAAAAAAAAA %s", __PRETTY_FUNCTION__);
 endsnippet
 
 snippet sca

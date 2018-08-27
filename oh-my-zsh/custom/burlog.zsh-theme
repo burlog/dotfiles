@@ -132,19 +132,19 @@ battery_level() {
   local charging_symbol
   if [[ $(acpi 2>/dev/null | grep -c '^Battery.*Discharging') -gt 0 ]]; then
     if [[ $(battery_pct_remaining) -le 5 ]]; then
-      prompt_segment "⚡◯" default red 1
+      prompt_segment "◯" default red 1
     elif [[ $(battery_pct_remaining) -le 10 ]]; then
-      prompt_segment "⚡◯" default yellow 1
+      prompt_segment "◯" default yellow 1
     elif [[ $(battery_pct_remaining) -le 25 ]]; then
-      prompt_segment "⚡◯" default green
+      prompt_segment "◯" default green
     elif [[ $(battery_pct_remaining) -le 50 ]]; then
-      prompt_segment "⚡◔" default green
+      prompt_segment "◔" default green
     elif [[ $(battery_pct_remaining) -le 75 ]]; then
-      prompt_segment "⚡◑" default green
+      prompt_segment "◑" default green
     elif [[ $(battery_pct_remaining) -le 99 ]]; then
-      prompt_segment "⚡◕" default green
+      prompt_segment "◕" default green
     else
-      prompt_segment "⚡●" default green
+      prompt_segment "●" default green
     fi
   fi
 }

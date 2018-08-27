@@ -43,3 +43,4 @@ __pycache__
 .color_coded
 .clang-tidy
 compile_commands.json
+*.egg-info/

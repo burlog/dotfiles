@@ -15,8 +15,8 @@ highlight PmenuSel                                 ctermfg=0    ctermbg=45  guif
 highlight PmenuSbar                                             ctermbg=249               guibg=#010101
 highlight PmenuThumb                                            ctermbg=45                guibg=#828282
 highlight Visual      term=reverse                              ctermbg=94                guibg=#4d3d00
-highlight FoldColumn  term=standout                ctermfg=0    ctermbg=242 guifg=#000000 guibg=#7a7a7a
-highlight Folded      term=standout                ctermfg=0    ctermbg=242 guifg=#000000 guibg=#7a7a7a
+highlight FoldColumn  term=standout                ctermfg=0    ctermbg=242 guifg=#bbbbbb guibg=#303030
+highlight Folded      term=standout                ctermfg=0    ctermbg=242 guifg=#bbbbbb guibg=#303030
 highlight DiffAdd     term=reverse                              ctermbg=22                guibg=#084d00
 highlight DiffChange  term=reverse                              ctermbg=94                guibg=#662500
 highlight DiffDelete  term=none  gui=none          ctermfg=255  ctermbg=196 guifg=#ffebe6 guibg=#b32400

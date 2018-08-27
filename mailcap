@@ -10,7 +10,7 @@ image/*; gwenview '%s';
 message/external-body; showexternal '%s' %{access-type} %{name} %{site} %{directory} %{mode} %{server}; needsterminal; description="A reference to data stored in an external location"; composetyped="extcompose '%s"'
 message/partial; showpartial '%s' %{id} %{number} %{total}; description="An incomplete message"
 text/enriched; richtext -e '%s'; description="Enriched Text"; copiousoutput
-text/html; /usr/bin/lynx -force_html '%s'; needsterminal; description=HTML Text; nametemplate=%s.html
+text/html; /usr/bin/links '%s'; needsterminal; description=HTML Text; nametemplate=%s.html
 text/plain; view '%s'; edit=vim '%s'; compose=vim '%s'; needsterminal
 text/richtext; richtext '%s'; description="Richtext"; copiousoutput
 text/calendar; ~/bin/ics2rem '%s' >> ~/.reminders;

@@ -5,6 +5,8 @@ let g:ycm_add_preview_to_completeopt = 1
 let g:ycm_allow_changing_updatetime = 0
 let g:ycm_autoclose_preview_window_after_completion = 0
 let g:ycm_autoclose_preview_window_after_insertion = 0
+let g:ycm_open_loclist_on_ycm_diags = 0
+let g:ycm_open_quickfix_list_on_fix_it = 0
 let g:ycm_always_populate_location_list = 0
 let g:ycm_error_symbol = ""
 let g:ycm_warning_symbol = ""
@@ -15,7 +17,7 @@ let g:ycm_key_invoke_completion = "<C-Tab>"
 let g:ycm_use_ultisnips_completer = 1
 let g:ycm_filetype_whitelist = {"cpp": 1, "c": 1, "python": 1, "javascript": 1}
 let g:ycm_global_ycm_extra_conf = "~/.vim/ycm-default-extra_conf.py"
-let g:ycm_server_python_interpreter = "/usr/bin/python2"
+let g:ycm_server_python_interpreter = "/usr/bin/python3"
 
 let g:ycm_filetype_blacklist = {}
 
