@@ -97,8 +97,8 @@ map <A-Down>      <C-w><Down>
 map <A-Up>        <C-w><Up>
 map <A-Left>      <C-w><Left>
 map <A-Right>     <C-w><Right>
-map <A-PageDown>  <C-w><Down><C-w>200+
-map <A-PageUp>    <C-w><Up><C-w>200+
+map <A-PageDown>  <C-w><Down><C-w><C-_>
+map <A-PageUp>    <C-w><Up><C-w><C-_>
 map <C-Tab>       :tabnext<CR>
 map [1;1C     :tabnext<CR>
 map [1;1D     :tabprevious<CR>
@@ -106,6 +106,7 @@ map <A-F1>        :call AddDoc()<CR>a
 map <F1>          :call OpenPreview()<CR>:YcmCompleter FixIt<CR>
 map <F2>          :YcmForceCompileAndDiagnostics<CR>
 map <C-F2>        :YcmShowDetailedDiagnostic<CR>
+map <C-F3>        :YcmCompleter GetType<CR>
 map <F3>          :call ToggleSignColumn()<CR>
 map <F4>          :Gdiff<CR>
 map <F5>          :GundoToggle<CR>
@@ -237,4 +238,5 @@ source $HOME/.vim/my.vim
 "= Abbreviations "==============================================================
 autocmd FileType cpp abbreviate strign string
 autocmd FileType python abbreviate sefl self
+autocmd FileType cpp abbreviate delctype decltype
 
