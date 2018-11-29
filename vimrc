@@ -227,6 +227,8 @@ autocmd FileType css,html,xml,xhtml,rss
     \ setlocal tabstop=8 |
     \ setlocal softtabstop=8
 
+autocmd FileType am setlocal tabstop=4
+
 autocmd BufRead,BufNewFile *.rfc822 setlocal filetype=mail
 
 autocmd BufRead,BufNewFile COMMIT_EDITMSG execute "call OpenGitDiff()"
