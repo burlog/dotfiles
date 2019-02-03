@@ -79,7 +79,7 @@ source $ZSH/oh-my-zsh.sh
 export MANPATH="/usr/local/man:$MANPATH"
 
 # git-clone-zsh-completion variables
-GIT_CLONE_ZSH_CMPL_AUTH_TOKEN="`cat ~/.gitlab.kancelar.seznam.cz.private.token`"
+GIT_CLONE_ZSH_CMPL_AUTH_TOKEN="`cat ~/.gitlab.kancelar.seznam.cz.private.token 2>/dev/null`"
 GIT_CLONE_ZSH_CMPL_HOST="gitlab.kancelar.seznam.cz"
 
 # You may need to manually set your language environment
