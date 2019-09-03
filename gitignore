@@ -44,3 +44,5 @@ __pycache__
 .clang-tidy
 compile_commands.json
 *.egg-info/
+*.pytest_cache/
+.xprocess
