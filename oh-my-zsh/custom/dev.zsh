@@ -12,7 +12,7 @@ export GREP_COLORS='ms=01;33:mc=01;31:sl=32:cx=:fn=01;30:ln=36:se='
 export GCC_COLORS="error=1;38;5;124:warning=1;38;5;202:note=38;5;34:locus=48;5;22;38;5;0:quote=38;5;33"
 
 # exported variables
-export PKG_CONFIG_PATH=/usr/lib/pkgconfig/:/usr/local/lib/pkgconfig:/usr/local/lib/pkgconfig.szn/
+export PKG_CONFIG_PATH=/usr/lib/pkgconfig/:/usr/local/lib/pkgconfig:/usr/local/lib/pkgconfig.szn/:/usr/local/share/pkgconfig/
 export LOG_MASK=A
 export LOG_STDERR=1
 export SZN_LOCALITY=go
