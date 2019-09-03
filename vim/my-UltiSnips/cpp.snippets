@@ -199,6 +199,14 @@ snippet fw "std::forward<>" w
 std::forward<${1:args_t}>(${2:args})
 endsnippet
 
+snippet dv "std::declval<>" w
+std::declval<${1:args_t}>()
+endsnippet
+
+snippet mv "std::move" w
+std::move(${1:args})
+endsnippet
+
 snippet tp "template <typename ..> (template)"
 template <typename ${1:type_t}>
 endsnippet
