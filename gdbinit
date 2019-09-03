@@ -32,8 +32,8 @@ USER = os.environ.get('USER')
 
 # load pretty printers
 sys.path.insert(0, '/home/' + USER + '/.gdb/gdb-python-printers/')
-from libstdcxx.v6.printers import register_libstdcxx_printers
-register_libstdcxx_printers(None)
+from cxx_ext.printers import register_cxx_ext_printers
+register_cxx_ext_printers(None)
 from libfastrpc.printers import register_fastrpc_printers
 register_fastrpc_printers(None)
 from teng.printers import register_teng_printers
