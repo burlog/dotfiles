@@ -1,4 +1,4 @@
-let g:ycm_extra_conf_globlist = ["~/git/email/*", "~/git/rus/*", "~/git/github/*", "~/git/tech_dev/*", "~/git/kde/*/", "~/git/generic/mtd/.ycm_extra_conf.py", "!~/*"]
+let g:ycm_extra_conf_globlist = ["~/git/email/*", "~/git/rus/*", "~/git/github/*", "~/git/tech_dev/*", "~/git/kde/*/", "~/git/generic/resolver/.ycm_extra_conf.py", "~/git/generic/mtd*/.ycm_extra_conf.py", "!~/*"]
 let g:ycm_enable_diagnostic_signs = 1
 let g:ycm_key_list_select_completion = ["<Down>"]
 let g:ycm_add_preview_to_completeopt = 1
@@ -11,7 +11,7 @@ let g:ycm_always_populate_location_list = 0
 let g:ycm_error_symbol = ""
 let g:ycm_warning_symbol = ""
 let g:ycm_min_num_of_chars_for_completion = 99
-let g:ycm_goto_buffer_command = "vertical-split"
+let g:ycm_goto_buffer_command = "split"
 let g:ycm_auto_trigger = 1
 let g:ycm_key_invoke_completion = "<C-Tab>"
 let g:ycm_use_ultisnips_completer = 1

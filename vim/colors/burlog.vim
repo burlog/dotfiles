@@ -49,7 +49,6 @@ highlight Search                                                ctermbg=220     
 highlight Constant                                 ctermfg=147              guifg=#afafff
 highlight Comment                                  ctermfg=31               guifg=#0087af
 highlight Identifier cterm=none                    ctermfg=33               guifg=#0099ff
-highlight PreProc    term=none                     ctermfg=55               guifg=#47418d
 highlight ExtraWhitespace                                       ctermbg=124               guibg=#af0000
 
 " custom syntax from polyglot and me

@@ -58,40 +58,6 @@ function! ToggleSignColumn()
     endfor
 endfunction
 
-function! s:FixQFWin()
-    silent setlocal nowinfixheight
-    silent 5wincmd _
-    silent setlocal winfixheight
-endfunction
-autocmd User YcmLocationOpened call s:FixQFWin()
-autocmd User YcmQuickFixOpened call s:FixQFWin()
-
-autocmd BufAdd * call s:OpenPreviewOnRight()
-function! s:OpenPreviewOnRight()
-    if &previewwindow && !get(w:, "fix_preview_pos_done", 0)
-        silent wincmd L
-        silent vertical resize 60
-        silent setlocal winfixwidth
-        silent setlocal nowinfixheight
-        let w:fix_preview_pos_done = 1
-    endif
-endfunction
-
-function! OpenPreview()
-    silent pedit [] " this one must start with [ char due to ycm s:ClosePreviewWindowIfNeeded
-    silent wincmd P
-    silent setlocal previewwindow
-    silent setlocal noreadonly
-    silent setlocal nomodifiable
-    silent setlocal buftype=nofile
-    silent setlocal bufhidden=wipe
-    silent setlocal noswapfile
-    silent setlocal winfixwidth
-    silent wincmd p
-    " copen 5
-    " silent wincmd p
-endfunction
-
 autocmd BufEnter * call SetSyntaxForPreview(bufnr("%"))
 function! SetSyntaxForPreview(current_bufno)
     for winno in range(0, winnr('$'))
@@ -143,14 +109,109 @@ function! GotoNextSign(...)
     echom "No signs found: " . string(a:000)
 endfunction
 
+" =============================================================== Layout
+
+let g:layout_preview_arranged = 0
+let g:layout_quickfix_arranged = 0
+
+autocmd WinEnter * call s:ProtectPreview()
+function! s:ProtectPreview()
+    if pumvisible()
+        return
+    endif
+    if g:layout_preview_arranged
+        if g:layout_quickfix_arranged
+            if &previewwindow
+                silent wincmd j
+            endif
+        else
+            if &previewwindow
+                silent wincmd h
+            endif
+        endif
+    endif
+endfunction
+
+function! IsPreviewOpened()
+    for nr in range(1, winnr('$'))
+        if getwinvar(nr, "&previewwindow") == 1
+            return 1
+        endif
+    endfor
+    return 0
+endfunction
+
+autocmd BufWinLeave * call s:LeavePreview()
+function! s:LeavePreview()
+    if &bt == "quickfix"
+        let g:layout_quickfix_arranged = 0
+        let g:layout_preview_arranged = 0
+        if IsPreviewOpened()
+            silent wincmd P
+            silent let p = winnr()
+            silent wincmd p
+            silent execute p . "close"
+        endif
+    endif
+endfunction
+
+autocmd User YcmQuickFixOpened call s:SetLayoutByQuickFix()
+function! s:SetLayoutByQuickFix()
+    " fired when no layout set and YCMComplete GoTo found more than one destinations
+    if g:layout_quickfix_arranged
+        return
+    endif
+    let g:layout_quickfix_arranged = 1
+
+    if g:layout_preview_arranged
+        let g:layout_preview_arranged = 0
+        silent wincmd P
+        let p = winnr()
+        silent wincmd p
+        silent execute p . "close"
+    endif
+    let g:layout_preview_arranged = 1
+    silent wincmd L
+    silent setlocal nowinfixheight
+    silent setlocal winfixwidth
+    silent resize 60
+    silent setlocal winfixheight
+    silent pedit [] " this one must start with [ char due to ycm s:ClosePreviewWindowIfNeeded
+    silent wincmd P
+    silent vertical resize 60
+    silent setlocal previewwindow
+    silent setlocal noreadonly
+    silent setlocal nomodifiable
+    silent setlocal buftype=nofile
+    silent setlocal bufhidden=wipe
+    silent setlocal noswapfile
+    silent setlocal winfixwidth
+    silent wincmd p
+endfunction
+
+autocmd WinEnter * call s:SetLayoutByCompletion()
+function! s:SetLayoutByCompletion()
+    " fired when no layout set and completion requested
+    if &previewwindow
+        if g:layout_preview_arranged
+            return
+        endif
+        let g:layout_preview_arranged = 1
+        silent wincmd L
+        silent vertical resize 60
+        silent setlocal winfixwidth
+        silent setlocal winfixheight
+    endif
+endfunction
+
 function! Make()
     let git_dir = fugitive#extract_git_dir(fnamemodify(bufname("%"), ":p"))
     if git_dir != ""
         let repo = fugitive#repo(git_dir).tree()
         let build = repo . "/" . "build"
         if getfsize(build) == 0
-            execute "make! -j 4 -C " . build
-            call OpenPreview()
+            execute "make! -j 1 -C " . build
+            "call s:SetLayoutByMake()
             copen
             return
         endif
