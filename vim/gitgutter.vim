@@ -10,4 +10,5 @@ let g:gitgutter_sign_modified_removed = ""
 
 map ]c <Plug>GitGutterNextHunk
 map [c <Plug>GitGutterPrevHunk
+map ]x <Plug>GitGutterUndoHunk
 
