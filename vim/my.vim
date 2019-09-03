@@ -193,6 +193,9 @@ autocmd WinEnter * call s:SetLayoutByCompletion()
 function! s:SetLayoutByCompletion()
     " fired when no layout set and completion requested
     if &previewwindow
+        if bufname(bufnr("")) == "diff"
+            return
+        endif
         if g:layout_preview_arranged
             return
         endif
