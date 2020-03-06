@@ -22,6 +22,7 @@ let g:ycm_server_python_interpreter = "/usr/bin/python3"
 let g:ycm_filetype_blacklist = {}
 
 let g:ulti_expand_or_jump_res = 0
+let g:ycm_clangd_args = ['--header-insertion=never', '--completion-style=detailed', '-pretty']
 
 let s:ycm_filetype_list = join(keys(g:ycm_filetype_whitelist), ",")
 

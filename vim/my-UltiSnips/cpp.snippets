@@ -127,6 +127,10 @@ snippet cp "const char *" w
 const char *
 endsnippet
 
+snippet sc "std::chrono::system_clock" w
+std::chrono::system_clock
+endsnippet
+
 snippet cc
 const ${1:} &${2:`!p snip.rv = re.sub("_t$", "", t[1].lower())`}
 endsnippet
@@ -136,7 +140,7 @@ std::unique_ptr<${1:}>
 endsnippet
 
 snippet sq
-std::unique_ptr<${1:}>
+std::shared_ptr<${1:}>
 endsnippet
 
 snippet iios
@@ -174,7 +178,6 @@ snippet nomove "no move defs"
 ${1:Object_t}($1 &&) = delete;
 $1 &operator=($1 &&) = delete;
 endsnippet
-
 
 snippet cl "class"
 /**

@@ -76,7 +76,8 @@ function! ErrorColumn()
     redir => diag
     silent execute "YcmShowDetailedDiagnostic"
     redir END
-    return str2nr(split(split(split(diag, "\n")[0])[0], ":")[-1])
+    " return str2nr(split(split(split(diag, "\n")[0])[0], ":")[-1])
+    return str2nr(matchstr(split(diag, "\n")[-1], '.*(\zs.*\ze)'))
 endfunction
 
 function! GotoNextSign(...)
@@ -111,16 +112,13 @@ endfunction
 
 " =============================================================== Layout
 
-let g:layout_preview_arranged = 0
-let g:layout_quickfix_arranged = 0
-
 autocmd WinEnter * call s:ProtectPreview()
 function! s:ProtectPreview()
     if pumvisible()
         return
     endif
-    if g:layout_preview_arranged
-        if g:layout_quickfix_arranged
+    if exists("t:layout_preview_arranged") && t:layout_preview_arranged
+        if exists("t:layout_quickfix_arranged") && t:layout_quickfix_arranged
             if &previewwindow
                 silent wincmd j
             endif
@@ -144,8 +142,8 @@ endfunction
 autocmd BufWinLeave * call s:LeavePreview()
 function! s:LeavePreview()
     if &bt == "quickfix"
-        let g:layout_quickfix_arranged = 0
-        let g:layout_preview_arranged = 0
+        let t:layout_quickfix_arranged = 0
+        let t:layout_preview_arranged = 0
         if IsPreviewOpened()
             silent wincmd P
             silent let p = winnr()
@@ -158,19 +156,19 @@ endfunction
 autocmd User YcmQuickFixOpened call s:SetLayoutByQuickFix()
 function! s:SetLayoutByQuickFix()
     " fired when no layout set and YCMComplete GoTo found more than one destinations
-    if g:layout_quickfix_arranged
+    if exists("t:layout_quickfix_arranged") && t:layout_quickfix_arranged
         return
     endif
-    let g:layout_quickfix_arranged = 1
+    let t:layout_quickfix_arranged = 1
 
-    if g:layout_preview_arranged
-        let g:layout_preview_arranged = 0
+    if exists("t:layout_preview_arranged") && t:layout_preview_arranged
+        let t:layout_preview_arranged = 0
         silent wincmd P
         let p = winnr()
         silent wincmd p
         silent execute p . "close"
     endif
-    let g:layout_preview_arranged = 1
+    let t:layout_preview_arranged = 1
     silent wincmd L
     silent setlocal nowinfixheight
     silent setlocal winfixwidth
@@ -196,10 +194,10 @@ function! s:SetLayoutByCompletion()
         if bufname(bufnr("")) == "diff"
             return
         endif
-        if g:layout_preview_arranged
+        if exists("t:layout_preview_arranged") && t:layout_preview_arranged
             return
         endif
-        let g:layout_preview_arranged = 1
+        let t:layout_preview_arranged = 1
         silent wincmd L
         silent vertical resize 60
         silent setlocal winfixwidth

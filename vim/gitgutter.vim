@@ -8,7 +8,7 @@ let g:gitgutter_sign_modified = ""
 let g:gitgutter_sign_removed = ""
 let g:gitgutter_sign_modified_removed = ""
 
-map ]c <Plug>GitGutterNextHunk
-map [c <Plug>GitGutterPrevHunk
-map ]x <Plug>GitGutterUndoHunk
+map ]c <Plug>(GitGutterNextHunk)
+map [c <Plug>(GitGutterPrevHunk)
+map ]x <Plug>(GitGutterUndoHunk)
 
