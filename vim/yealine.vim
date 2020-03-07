@@ -62,7 +62,7 @@ function! s:get_repo(path)
             return repo
         endif
     endfor
-    let git_dir = fugitive#extract_git_dir(a:path)
+    let git_dir = FugitiveExtractGitDir(a:path)
     if git_dir != ""
         let repo = fugitive#repo(git_dir)
         let tree = repo.tree()

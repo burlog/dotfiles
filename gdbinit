@@ -39,10 +39,10 @@ register_fastrpc_printers(None)
 from teng.printers import register_teng_printers
 register_teng_printers(None)
 
-# other python gdb extension
-sys.path.insert(0, '/home/' + USER + '/.gdb/')
-from voidwalker import voidwalker
-from gdb_color_bt import color
+# # other python gdb extension
+# sys.path.insert(0, '/home/' + USER + '/.gdb/')
+# from voidwalker import voidwalker
+# from gdb_color_bt import color
 end
 
 # make promp colorfull
