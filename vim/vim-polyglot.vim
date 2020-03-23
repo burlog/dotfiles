@@ -1,5 +1,5 @@
 " disable c++11 - my is better, for me at least
-let g:polyglot_disabled = ["c++11"]
+let g:polyglot_disabled = ["c++11", "csv"]
 
 " js
 let g:javascript_enable_domhtmlcss = 1

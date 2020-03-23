@@ -6,6 +6,7 @@ pager =
 [user]
 name = Michal Bukovsky
 email = michal.bukovsky@firma.seznam.cz
+signingkey = E6AE6CE18AE07988B138BBD52015343C36E0B220
 
 [color]
 diff = auto
@@ -30,3 +31,6 @@ sslVerify = false
 
 [help]
 autoCorrect = -1
+
+[commit]
+gpgsign = true
