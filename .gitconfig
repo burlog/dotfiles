@@ -1,0 +1,40 @@
+[core]
+editor = vim
+excludesfile = /home/burlog/.gitignore
+pager = 
+
+[user]
+name = Michal Bukovsky
+email = michal.bukovsky@firma.seznam.cz
+signingkey = E6AE6CE18AE07988B138BBD52015343C36E0B220
+
+[color]
+diff = auto
+status = auto
+branch = auto
+show-branch = auto
+grep = auto
+
+[alias]
+
+[push]
+default = current
+
+[status]
+color = auto
+
+[diff]
+#external = /usr/bin/colordiff
+
+[http]
+sslVerify = false
+
+[help]
+autoCorrect = -1
+
+[commit]
+gpgsign = true
+template = ~/.gitmessage
+
+[includeIf "gitdir:~/git/github.com/"]
+path = ~/git/github.com/.gitconfig
