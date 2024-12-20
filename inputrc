@@ -1,6 +1,0 @@
-# just one hit of tab key show what can be completed
-set show-all-if-unmodified on
-
-# use same shortcuts in xmlrpc-netcat as in zsh/bash
-"\e[1;3D": backward-word
-"\e[1;3C": forward-word
