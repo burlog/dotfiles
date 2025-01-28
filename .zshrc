@@ -66,6 +66,9 @@ plugins=(
 # Let Oh My Zsh do its work
 source $ZSH/oh-my-zsh.sh
 
+# User configuration for python
+export PYTHONSTARTUP="$HOME/.pythonrc.py"
+
 # User configuration
 export DEFAULT_USER="burlog"
 

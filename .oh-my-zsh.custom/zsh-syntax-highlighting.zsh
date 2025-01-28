@@ -11,7 +11,7 @@ typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[cursor]='fg=202'
 
 # unknown-token
-# reserved-word
+ZSH_HIGHLIGHT_STYLES[reserved-word]="fg=#ffff00"
 # alias
 # suffix-alias
 # global-alias
@@ -19,7 +19,7 @@ ZSH_HIGHLIGHT_STYLES[cursor]='fg=202'
 # function
 # command
 # precommand
-# commandseparator
+ZSH_HIGHLIGHT_STYLES[commandseparator]="fg=#00ffff"
 # hashed-command
 # autodirectory
 ZSH_HIGHLIGHT_STYLES[path]="fg=#88a000"
@@ -37,8 +37,8 @@ ZSH_HIGHLIGHT_STYLES[globbing]="fg=#ffcc00"
 # process-substitution
 # process-substitution-delimiter
 # arithmetic-expansion
-# single-hyphen-option
-# double-hyphen-option
+ZSH_HIGHLIGHT_STYLES[single-hyphen-option]="fg=#af8700"
+ZSH_HIGHLIGHT_STYLES[double-hyphen-option]="fg=#af8700"
 # back-quoted-argument
 # back-quoted-argument-unclosed
 # back-quoted-argument-delimiter
@@ -53,7 +53,7 @@ ZSH_HIGHLIGHT_STYLES[double-quoted-argument-unclosed]="fg=#b32240"
 # back-double-quoted-argument
 # back-dollar-quoted-argument
 # assign
-# redirection
+ZSH_HIGHLIGHT_STYLES[redirection]="fg=#ff00af"
 ZSH_HIGHLIGHT_STYLES[comment]="fg=#0087af"
 # named-fd
 # numeric-fd
