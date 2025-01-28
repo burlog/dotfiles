@@ -1,0 +1,49 @@
+priority -50
+
+global !p
+from ultisnips_tools import get_quoting_style
+endglobal
+
+snippet #! "Shebang header for python scripts" b
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+$0
+endsnippet
+
+snippet _td
+# TODO(burlog): 
+endsnippet
+
+snippet /kw/ "kwargs" r
+kwargs
+endsnippet
+
+snippet /ar/ "args" r
+args
+endsnippet
+
+snippet /s\./ "self." b
+self.
+endsnippet
+
+snippet /dd/ "dbg.log(...)" r
+dbg.log(">>> %s", (${1},), DBG=4)
+endsnippet
+
+snippet main "main" b
+if __name__ == `!p snip.rv = get_quoting_style(snip)`__main__`!p snip.rv = get_quoting_style(snip)`:
+	${1:${VISUAL:main()}}
+endsnippet
+
+snippet with "with" b
+with ${1:expr}`!p snip.rv = " as " if t[2] else ""`${2:var}:
+	${3:${VISUAL:pass}}
+${0}
+endsnippet
+
+snippet def "function with docstrings" b
+def ${1:function}(`!p
+if snip.indent:
+	snip.rv = 'self' + (", " if len(t[2]) else "")`${2:arg1}):
+	${5:${VISUAL:pass}}
+endsnippet

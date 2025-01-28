@@ -1,0 +1,203 @@
+extends c
+priority -49
+
+global !p
+from my_ultisnip import get_git_rel_path, get_project_vars
+endglobal
+
+snippet _td
+// TODO(burlog): 
+endsnippet
+
+snippet _ni
+#warning not implemented yet!
+endsnippet
+
+snippet cvs "const std::vector<std::string> &" w
+const std::vector<std::string> &
+endsnippet
+
+snippet vs "std::vector<std::string>" w
+std::vector<std::string>
+endsnippet
+
+snippet ee "const std::exception &" w
+const std::exception &
+endsnippet
+
+snippet rr "throw std::runtime_error(__FILE__:__LINE__);" w
+throw std::runtime_error(__FILE__ ":" + std::to_string(__LINE__));
+endsnippet
+
+snippet sv "std::string_view" w
+std::string_view
+endsnippet
+
+snippet cs "const std::string &" w
+const std::string &
+endsnippet
+
+snippet ss "std::string" w
+std::string
+endsnippet
+
+snippet npos "std::string::npos" w
+std::string::npos
+endsnippet
+
+snippet ts "std::to_string" w
+std::to_string
+endsnippet
+
+snippet sz "std::size_t" w
+std::size_t
+endsnippet
+
+snippet cp "const char *" w
+const char *
+endsnippet
+
+snippet iios
+#include <iostream>
+endsnippet
+
+snippet ginc
+#include <${1:string}>
+endsnippet
+
+snippet inc
+#include "${1:error}.h"
+endsnippet
+
+snippet nocopy "no copy defs"
+${1:Object_t}(const $1 &) = delete;
+$1 &operator=(const $1 &) = delete;
+endsnippet
+
+snippet nomove "no move defs"
+${1:Object_t}($1 &&) = delete;
+$1 &operator=($1 &&) = delete;
+endsnippet
+
+snippet fw "std::forward<>" w
+std::forward<${1:ArgsT}>(${2:args})
+endsnippet
+
+snippet dv "std::declval<>" w
+std::declval<${1:ArgsT}>()
+endsnippet
+
+snippet mv "std::move" w
+std::move(${1:args})
+endsnippet
+
+snippet tp "template <typename ..> (template)" w
+template <typename ${1:TypeT}>
+endsnippet
+
+snippet tn "typename (typename)" w
+typename ${1:TypeT}
+endsnippet
+
+snippet cout "" w
+std::cout << ${1} << std::endl;
+endsnippet
+
+snippet cerr "" w
+std::cerr << ${1} << std::endl;
+endsnippet
+
+snippet cin "" w
+std::cin >> ${1};
+endsnippet
+
+snippet DD "" w
+std::cout << __PRETTY_FUNCTION__ << ":" << __FILE__ << ":" << __LINE__ << std::endl;
+endsnippet
+
+snippet dd "" w
+DBG(DBG1, "AAAAAAAAAA %s", __PRETTY_FUNCTION__);
+endsnippet
+
+snippet sca "" w
+static_cast<${1:unsigned}>(${2:expr})${3}
+endsnippet
+
+snippet dca "" w
+dynamic_cast<${1:unsigned}>(${2:expr})${3}
+endsnippet
+
+snippet rca "aaa" w
+reinterpret_cast<${1:unsigned}>(${2:expr})${3}
+endsnippet
+
+snippet be "$1.begin(), $1.end()" w
+${1:v}${1/^.*?(-)?(>)?$/(?2::(?1:>:.))/}begin(), $1${1/^.*?(-)?(>)?$/(?2::(?1:>:.))/}end()
+endsnippet
+
+snippet es "static_cast<int>($1.size()), $1.data()" w
+static_cast<int>(${1:v}${1/^.*?(-)?(>)?$/(?2::(?1:>:.))/}size()), $1${1/^.*?(-)?(>)?$/(?2::(?1:>:.))/}data()
+endsnippet
+
+snippet dc "" w
+std::decay_t<${1:type}>
+endsnippet
+
+snippet dt "" w
+decltype(${2:value})
+endsnippet
+
+snippet HH "make header for h file" b
+/*`!p ns, project_name = get_project_vars(path)`
+ * FILE             $Id: $
+ *
+ * DESCRIPTION      ${1:desc}
+ *
+ * PROJECT          ${2:`!p snip.rv = project_name or "project"`}
+ *
+ * AUTHOR           `!v g:snips_author`
+ *
+ * Copyright (C) Seznam.cz a.s. `!p snip.rv = time.strftime("%Y")`
+ * All Rights Reserved
+ *
+ * HISTORY
+ *       `!p snip.rv = time.strftime("%Y-%m-%d")` (burlog)
+ *                  First draft.
+ */
+
+#pragma once
+
+namespace${3:`!p snip.rv = " " + ns if ns else ""`} {
+
+${VISUAL}${0}
+
+} // namespace$3
+
+endsnippet
+
+snippet HC "make header for cc file" b
+/*`!p ns, project_name = get_project_vars(path)`
+ * FILE             $Id: $
+ *
+ * DESCRIPTION      ${1:desc}
+ *
+ * PROJECT          ${2:`!p snip.rv = project_name or "project"`}
+ *
+ * AUTHOR           `!v g:snips_author`
+ *
+ * Copyright (C) Seznam.cz a.s. `!p snip.rv = time.strftime("%Y")`
+ * All Rights Reserved
+ *
+ * HISTORY
+ *       `!p snip.rv = time.strftime("%Y-%m-%d")` (burlog)
+ *                  First draft.
+ */
+
+#include "${3:`!p snip.rv = get_git_rel_path(path).replace(".cc", ".h").lstrip("include/").lstrip("src/")`}"
+
+namespace${4:`!p snip.rv = " " + ns if ns else ""`} {
+
+${VISUAL}${0}
+
+} // namespace$4
+endsnippet

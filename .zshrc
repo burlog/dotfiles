@@ -8,7 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME=""
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
@@ -37,9 +37,8 @@ COMPLETION_WAITING_DOTS="true"
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-ZSH_CACHE_DIR="/tmp/ohmyzsh.$USER"
+ZSH_CUSTOM="$HOME/.oh-my-zsh.custom"
+ZSH_CACHE_DIR="/tmp/oh-my-zsh.$USER"
 ZSH_COMPDUMP="$ZSH_CACHE_DIR/.zcompdump"
 
 # Which plugins would you like to load?
@@ -53,7 +52,7 @@ plugins=(
     command-not-found
     docker
     # emoji
-    git
+    # git-prompt
     # grc
     kubectl
     kubectx
@@ -61,9 +60,28 @@ plugins=(
     ssh-agent
     sudo
     zsh-autosuggestions
+    zsh-syntax-highlighting
 )
 
+# Let Oh My Zsh do its work
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+export DEFAULT_USER="burlog"
 
+# Appends every command to the history file once it is executed
+setopt inc_append_history
+# Reloads the history whenever you use it
+setopt share_history
+
+# Switch term to use more than 8 colors
+export TERM="xterm-256color"
+
+# The basic aliases
+alias sl="ls"
+alias c="cd .."
+alias vi="vim -o"
+alias vim="vim -o"
+
+# Force stupid go to put binaries into hidden directory
+export GOPATH=~/.go

@@ -49,3 +49,5 @@ compile_commands.json
 .git-rebuild/
 .cache
 dist/
+
+.oh-my-zsh.custom/plugins/
