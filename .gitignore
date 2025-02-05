@@ -51,3 +51,4 @@ compile_commands.json
 dist/
 
 .oh-my-zsh.custom/plugins/
+.meson-subproject-wrap-hash.txt

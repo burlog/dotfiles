@@ -143,6 +143,7 @@ Plug 'wellle/targets.vim'
 
 " Multiple cursors in Vim
 Plug 'mg979/vim-visual-multi'
+source $HOME/.vim/custom/visual-multi.vim
 
 " Change the surrounding of the text
 Plug 'tpope/vim-surround'
