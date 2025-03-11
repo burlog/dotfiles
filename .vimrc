@@ -50,6 +50,7 @@ set foldmethod=marker          " Use vim triple { markers to denote folded block
 set foldcolumn=1               " Adds extra column left edge of window to indicate folds
 set fillchars="vert:\|,fold: " " Sets what characters are used to draw vertical lines and folds
 set completeopt-=preview       " Remove preview option from completion options
+set cinoptions+=N-s            " Do not indent after namespace
 
 "= Gui settings ================================================================
 
@@ -119,7 +120,7 @@ Plug 'sheerun/vim-polyglot'
 source $HOME/.vim/custom/polyglot.vim
 
 " Wrapping and unwrapping function arguments
-Plug 'https://git.foosoft.net/alex/vim-argwrap.git'
+Plug 'https://git.sr.ht/~foosoft/vim-argwrap'
 source $HOME/.vim/custom/argwrap.vim
 
 " Alternate between header and source files
