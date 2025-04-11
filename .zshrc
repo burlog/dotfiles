@@ -72,10 +72,18 @@ export PYTHONSTARTUP="$HOME/.pythonrc.py"
 # User configuration
 export DEFAULT_USER="burlog"
 
+# Enable time stamps in history
+setopt extendhistory
 # Appends every command to the history file once it is executed
 setopt inc_append_history
-# Reloads the history whenever you use it
+# Shares history between all sessions
 setopt share_history
+# Avoids duplicates in the history file
+setopt hist_ignore_all_dups
+# Sets the maximum number of lines contained in the history file
+export HISTSIZE=100000
+# Sets the maximum number of lines contained in the history list
+export SAVEHIST=100000
 
 # Switch term to use more than 8 colors
 export TERM="xterm-256color"

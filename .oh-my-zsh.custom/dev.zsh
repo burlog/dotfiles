@@ -14,3 +14,8 @@ export PKG_CONFIG_PATH=/usr/lib64/pkgconfig/:/usr/local/lib64/pkgconfig:/usr/loc
 export LOG_MASK=A
 export LOG_STDERR=1
 export SZN_LOCALITY=go
+
+# pyenv initialization
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
