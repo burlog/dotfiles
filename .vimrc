@@ -71,6 +71,7 @@ imap <A-Left>     <C-O><A-Left>
 imap <A-Right>    <C-O><A-Right>
 imap <A-PageDown> <Esc><A-PageDown>
 imap <A-PageUp>   <Esc><A-PageUp>
+imap <A-Home>     <C-O><A-Home>
 imap [1;1C    <C-O>:tabnext<CR>
 imap [1;1D    <C-O>:tabprevious<CR>
 imap <A-F1>       <C-O>:call AddDoc()<CR>
@@ -89,6 +90,7 @@ map <A-Left>      <C-w><Left>
 map <A-Right>     <C-w><Right>
 map <A-PageDown>  <C-w><Down><C-w><C-_>
 map <A-PageUp>    <C-w><Up><C-w><C-_>
+map <A-Home>      <C-w>K
 map <C-Tab>       :tabnext<CR>
 map [1;1C     :tabnext<CR>
 map [1;1D     :tabprevious<CR>
@@ -197,6 +199,9 @@ source $HOME/.vim/custom/airline.vim
 Plug 'ryanoasis/vim-devicons'
 source $HOME/.vim/custom/devicons.vim
 
+" Copilot chat plugin
+Plug 'DanBradbury/copilot-chat.vim'
+
 call plug#end()
 
 
@@ -222,9 +227,9 @@ autocmd FileType txt setlocal textwidth=78
 " force tabs in web files
 autocmd FileType css,html,xml,xhtml,rss
     \ setlocal noexpandtab |
-    \ setlocal shiftwidth=8 |
-    \ setlocal tabstop=8 |
-    \ setlocal softtabstop=8
+    \ setlocal shiftwidth=2 |
+    \ setlocal tabstop=2 |
+    \ setlocal softtabstop=2
 
 " force tabs in makefiles and automakefiles
 autocmd FileType,BufRead,BufNewFile am,automake
@@ -237,7 +242,7 @@ autocmd FileType,BufRead,BufNewFile am,automake
 autocmd BufRead,BufNewFile *.rfc822 setlocal filetype=mail
 
 " open diff when commiting
-autocmd BufRead,BufNewFile COMMIT_EDITMSG execute "call OpenGitDiff()"
+" autocmd FileType gitcommit call OpenGitDiff()
 
 " allows using % command for angle brackets
 autocmd FileType c,cpp setlocal matchpairs+=<:>

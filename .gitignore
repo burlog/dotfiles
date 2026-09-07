@@ -49,6 +49,10 @@ compile_commands.json
 .git-rebuild/
 .cache
 dist/
+.python-version
+.hypothesis
 
 .oh-my-zsh.custom/plugins/
 .meson-subproject-wrap-hash.txt
+
+**/.claude/settings.local.json

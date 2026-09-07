@@ -73,7 +73,7 @@ export PYTHONSTARTUP="$HOME/.pythonrc.py"
 export DEFAULT_USER="burlog"
 
 # Enable time stamps in history
-setopt extendhistory
+setopt extended_history
 # Appends every command to the history file once it is executed
 setopt inc_append_history
 # Shares history between all sessions
@@ -93,6 +93,13 @@ alias sl="ls"
 alias c="cd .."
 alias vi="vim -o"
 alias vim="vim -o"
+alias copilot="/usr/bin/copilot --disable-mcp-server github-mcp-server --allow-tool 'Sourcegraph' --allow-tool 'context7' --allow-tool 'GitLab'"
+# alias copilot="/usr/bin/copilot --allow-tool 'mcp__Sourcegraph__*' --allow-tool 'mcp__context7__*' --allow-tool 'mcp__GitLab__*'"
+#alias gcopilot="/usr/bin/copilot"
 
 # Force stupid go to put binaries into hidden directory
 export GOPATH=~/.go
+
+
+# Added by Antigravity CLI installer
+export PATH="/home/burlog/.local/bin:$PATH"

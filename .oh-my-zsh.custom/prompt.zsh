@@ -3,6 +3,31 @@
 
 BURLOG_PROMPT_CURRENT_BG=''
 
+# Usage: find_up FILENAME
+#
+# Searches for a file with the given name in the current directory and all
+# parent directories.
+function find_up() {
+    local filename="$1"
+    local dir="$PWD"
+
+    while [[ "$dir" != "/" ]]; do
+        if [[ -e "$dir/$filename" ]]; then
+            echo "$dir/$filename"
+            return 0
+        fi
+        dir="$(dirname "$dir")"
+    done
+
+  # Check root directory
+  if [[ -e "/$filename" ]]; then
+      echo "/$filename"
+      return 0
+  fi
+
+  return 1
+}
+
 # Usage: prompt-length RESULT TEXT [COLUMNS]
 #
 # If you run `print -P TEXT`, how many characters will be printed on the last
@@ -295,6 +320,28 @@ function prompt-kubectx-info() {
     fi
 }
 
+# Usage: prompt-pyenv
+#
+# Prints name of the current active Python environment.
+#
+function prompt-pyenv() {
+    pyproject="$(find_up .venv)"
+    if [[ -z "$pyproject" ]]; then
+        return 0
+    fi
+
+    local project_dir="${pyproject:h}"
+
+    # Check if there's a .venv directory
+    if [[ -d "$project_dir/.venv" ]]; then
+        local pyenv_name="${project_dir:t}"
+        prompt-segment "[" default blue
+        prompt-segment "\ue73c" default "#aaab23" intensive
+        prompt-segment " $pyenv_name" default "#017b93" intensive
+        prompt-segment "]" default blue
+    fi
+}
+
 # Usage: build-top-left
 #
 # Prints bottom left prompt.
@@ -306,6 +353,7 @@ function build-top-left() {
     elements+="$(prompt-host)"
     elements+="$(prompt-git-branch)"
     elements+="$(prompt-kubectx-info)"
+    elements+="$(prompt-pyenv)"
     elements+="$(prompt-end)"
     echo -n "${(@j[ ])elements:#}"
 }

@@ -134,13 +134,13 @@ function! RWFilenamePart()
     if &readonly
         return ''
     endif
-    return expand('%:f')
+    return expand('%:p:.')
 endfunction
 
 " Returns the filename of the buffer for immutable buffers
 function! ROFilenamePart()
     if &readonly
-        return expand('%:f')
+        return expand('%:p:.')
     endif
     return ''
 endfunction
